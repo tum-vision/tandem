@@ -1,9 +1,14 @@
 <h1 align="center">TANDEM: Tracking and Dense Mapping<br>in Real-time using Deep Multi-view Stereo</h1>
 <p align="center">
     <a href="https://lukaskoestler.com">Lukas Koestler</a><sup>1*</sup> &emsp;&emsp;
-    <a href="https://vision.in.tum.de/members/yangn">Nan Yang</a><sup>1,2*</sup> &emsp;&emsp;
+    <a href="https://vision.in.tum.de/members/yangn">Nan Yang</a><sup>1,2*,&dagger;</sup> &emsp;&emsp;
     <a href="https://www.niclas-zeller.de/">Niclas Zeller</a><sup>2,3</sup> &emsp;&emsp;
     <a href="https://vision.in.tum.de/members/cremers">Daniel Cremers</a><sup>1,2</sup>
+</p>
+
+<p align="center">
+    <sup>*</sup>equal contribution&emsp;&emsp;&emsp;
+    <sup>&dagger;</sup>corresponding author
 </p>
 
 <p align="center">
