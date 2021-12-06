@@ -1,22 +1,5 @@
-# TANDEM: Replica Extension
-This dataset builds on the excellent [Replica dataset](https://github.com/facebookresearch/Replica-Dataset) by Straub et al. - please cite Replica and TANDEM if you use this dataset.
-```
-@article{replica19arxiv,
-  title =   {The {R}eplica Dataset: A Digital Replica of Indoor Spaces},
-  author =  {Julian Straub and Thomas Whelan and Lingni Ma and Yufan Chen and Erik Wijmans and Simon Green and Jakob J. Engel and Raul Mur-Artal and Carl Ren and Shobhit Verma and Anton Clarkson and Mingfei Yan and Brian Budge and Yajie Yan and Xiaqing Pan and June Yon and Yuyang Zou and Kimberly Leon and Nigel Carter and Jesus Briales and  Tyler Gillingham and  Elias Mueggler and Luis Pesqueira and Manolis Savva and Dhruv Batra and Hauke M. Strasdat and Renzo De Nardi and Michael Goesele and Steven Lovegrove and Richard Newcombe },
-  journal = {arXiv preprint arXiv:1906.05797},
-  year =    {2019}
-}
-@inproceedings{tandem2021corl,
- author = {Lukas Koestler and Nan Yang and Niclas Zeller and Daniel Cremers},
- title = {{TANDEM}: Tracking and Dense Mapping in Real-time using Deep Multi-view Stereo},
- booktitle = {Conference on Robot Learning ({CoRL})},
- year = {2021}
-}
-```
-
-This dataset extends the original Replica dataset by generating realistic trajectories for visual SLAM. For convenience, we offer folders including images, depth maps, the train-val split, and poses. Note that all files derived from the Replica dataset are subject to their license given at the end of the document. Please consider the dataset specification below.
-
+# Replica-TANDEM-Ext
+This dataset is an extension of the excellent [Replica dataset](https://github.com/facebookresearch/Replica-Dataset) by Straub et al. Replica-TANDEM-Ext extends the original Replica dataset by generating realistic trajectories for visual SLAM. For convenience, we offer folders including images, depth maps, the train-val split, and poses. Note that all files derived from the Replica dataset are subject to their license given at the end of the document. Please consider the dataset specification below.
 
 ## Download
 The following table gives the download links for each version together with a version description. The first version number gives the major release, e.g. `0.` for the TANDEM CoRL paper. The second version number indicates the minor release, related to bug fixes or additional files. The description would indicate breaking changes, however, we hope to avoid these. Releases that end in `.beta` are beta and can be changed or deleted, while other releases will stay available. We give the MD5 sum computed with `md5sum (GNU coreutils) 8.30` in the last column. Upon clicking the link the download starts automatically and you can use `wget` or `curl` to download.
@@ -78,6 +61,22 @@ Same format as `tuples_dso_optimization_windows.txt`. Contains just the last 3 i
 #### depths
 The depth is stored as `uint16` and the global scale is a single float in the scale.txt. The depth is loaded like `depth_meters = scale * cv2.imread('depth/000000.png', -1).astype(np.float)`.
 
+## Bibtex
+Please consider citing Replica and TANDEM if you use this dataset.
+```
+@article{replica19arxiv,
+  title =   {The {R}eplica Dataset: A Digital Replica of Indoor Spaces},
+  author =  {Julian Straub and Thomas Whelan and Lingni Ma and Yufan Chen and Erik Wijmans and Simon Green and Jakob J. Engel and Raul Mur-Artal and Carl Ren and Shobhit Verma and Anton Clarkson and Mingfei Yan and Brian Budge and Yajie Yan and Xiaqing Pan and June Yon and Yuyang Zou and Kimberly Leon and Nigel Carter and Jesus Briales and  Tyler Gillingham and  Elias Mueggler and Luis Pesqueira and Manolis Savva and Dhruv Batra and Hauke M. Strasdat and Renzo De Nardi and Michael Goesele and Steven Lovegrove and Richard Newcombe },
+  journal = {arXiv preprint arXiv:1906.05797},
+  year =    {2019}
+}
+@inproceedings{tandem2021corl,
+ author = {Lukas Koestler and Nan Yang and Niclas Zeller and Daniel Cremers},
+ title = {{TANDEM}: Tracking and Dense Mapping in Real-time using Deep Multi-view Stereo},
+ booktitle = {Conference on Robot Learning ({CoRL})},
+ year = {2021}
+}
+```
 
 ## License
 Our additions to the Replica dataset are published under the BSD-3-clause license. All files derived from the original replica dataset, e.g. the images and depth maps, are licensed under the original Replica license, which can be found [here](https://github.com/facebookresearch/Replica-Dataset/blob/main/LICENSE) and which we replicate here for convenience. The full license file can be found in the downloaded data.
