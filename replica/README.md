@@ -2,11 +2,11 @@
 This dataset is an extension of the excellent [Replica dataset](https://github.com/facebookresearch/Replica-Dataset) by Straub et al. Replica-TANDEM-Ext extends the original Replica dataset by generating realistic trajectories for visual SLAM. For convenience, we offer folders including images, depth maps, the train-val split, and poses. Note that all files derived from the Replica dataset are subject to their license given at the end of the document. Please consider the dataset specification below.
 
 ## Download
-The following table gives the download links for each version together with a version description. The first version number gives the major release, e.g. `0.` for the TANDEM CoRL paper. The second version number indicates the minor release, related to bug fixes or additional files. The description would indicate breaking changes, however, we hope to avoid these. Releases that end in `.beta` are beta and can be changed or deleted, while other releases will stay available. We give the MD5 sum computed with `md5sum (GNU coreutils) 8.30` in the last column. Upon clicking the link the download starts automatically and you can use `wget` or `curl` to download.
+The following table gives the download links for each version together with a version description. The first version number gives the major release, e.g. `1.` for the TANDEM CoRL paper. The second version number indicates the minor release, related to bug fixes or additional files. The description would indicate breaking changes, however, we hope to avoid these. Releases that end in `.beta` are beta and can be changed or deleted, while other releases will stay available. We give the MD5 sum computed with `md5sum (GNU coreutils) 8.30` in the last column. Upon clicking the link the download starts automatically and you can use `wget` or `curl` to download.
 
 | Version Number | Version Description | Link | `md5sum` |
 |:---------------|:--------------------|:-----|:---------|
-| 0.1.beta | Initial Beta Release. | https://vision.in.tum.de/webshare/g/tandem/data/tandem_replica_0.1.beta.zip | `4696c986ed3947ada0b07dcb43d58c69` |
+| 1.1.beta | Initial Beta Release. | https://vision.in.tum.de/webshare/g/tandem/data/tandem_replica_1.1.beta.zip | `4696c986ed3947ada0b07dcb43d58c69` |
 
 
 
