@@ -1,0 +1,10 @@
+# === VO Window ===
+# Only parameters changes w.r.t. the default.yaml are set here
+
+DATA:
+  TUPLES_EXT: "dso_optimization_windows"
+
+MODEL:
+  DEPTH_NUM: (48, 32, 8)
+  DEPTH_INTERVAL_RATIO: (1.0, 0.5, 0.25)
+  VIEW_AGGREGATION: False
