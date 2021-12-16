@@ -18,7 +18,8 @@ pip install -r requirements.txt
 ### Training
 Config values are documented in `config/default.yaml`. In `config/abl0*.yaml` we include config files for the models shown in the ablation study (Table 2). You can start a training with
 ```
-python train.py --config config/default.yaml path/to/out/folder DATA.ROOT_DIR /path/to/downloaded/tandem_replica
+export TANDEM_DATA_DIR=/path/to/downloaded/tandem_replica
+python train.py --config config/default.yaml path/to/out/folder DATA.ROOT_DIR $TANDEM_DATA_DIR
 ```
 where `path/to/out/folder` may not exist and will contain tensorboard logs and checkpoints. You can overwrite more config parameters by listing them at the end of the command, e.g. `TRAIN.EPOCHS 100`.
 
@@ -26,7 +27,12 @@ where `path/to/out/folder` may not exist and will contain tensorboard logs and c
 For convenience we include pretrained models in `pretrained/ablation` and their evaluation numbers on TANDEM replica.
 
 ### Evaluation
-The pretrained models can be evaluated with `./eval.sh`. Note that this will overwrite the `*.txt` and `*.pkl` files in `pretrained/ablation`.
+The pretrained models can be evaluated with
+```
+export TANDEM_DATA_DIR=/path/to/downloaded/tandem_replica
+./eval.sh
+```
+**Note:** This will overwrite the `*.txt` and `*.pkl` files in `pretrained/ablation`.
 
 ### SLURM
 We include the `sbatch` scripts we used on our SLURM cluster, but these might have to be adapted for a different setup.
