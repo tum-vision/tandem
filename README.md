@@ -31,7 +31,7 @@
 </p>
 
 ## Code and data coming soon
-The data can now be found in the `replica` subdirectory. All code will be released before Christmas, Thank you for your patience!
+The data can now be found in the `replica` subdirectory and the CVA-MVSNet code in `cva_mvsnet`. The remaining C++ code will be released before Christmas, Thank you for your patience!
 
 
 ### Abstract
