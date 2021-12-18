@@ -30,9 +30,10 @@
     <a href="https://go.vision.in.tum.de/tandem">Project Page</a>
 </p>
 
-## Code and data coming soon
-The data can now be found in the `replica` subdirectory and the CVA-MVSNet code in `cva_mvsnet`. The remaining C++ code will be released before Christmas, Thank you for your patience!
-
+## Code and Data
+- [x] 📣 CVA-MVSNet released! Please check [cva_mvsnet/](cva_mvsnet/).
+- [x] 📣 Replica training data released! Please check [replica/](replica/).
+- [ ] C++ code realse before Christmas. Thank you for your patience!
 
 ### Abstract
 <p align="justify">In this paper, we present TANDEM a real-time monocular tracking and dense mapping framework. For pose estimation, TANDEM performs photometric bundle adjustment based on a sliding window of keyframes. To increase the robustness, we propose a novel tracking front-end that performs dense direct image alignment using depth maps rendered from a global model that is built incrementally from dense depth predictions. To predict the dense depth maps, we propose Cascade View-Aggregation MVSNet (CVA-MVSNet) that utilizes the entire active keyframe window by hierarchically constructing 3D cost volumes with adaptive view aggregation to balance the different stereo baselines between the keyframes. Finally, the predicted depth maps are fused into a consistent global map represented as a truncated signed distance function (TSDF) voxel grid. Our experimental results show that TANDEM outperforms other state-of-the-art traditional and learning-based monocular visual odometry (VO) methods in terms of camera tracking. Moreover, TANDEM shows state-of-the-art real-time 3D reconstruction performance.</p>
