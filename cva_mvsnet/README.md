@@ -34,6 +34,14 @@ export TANDEM_DATA_DIR=/path/to/downloaded/tandem_replica
 ```
 **Note:** This will overwrite the `*.txt` and `*.pkl` files in `pretrained/ablation`.
 
+### Export to C++
+The export script is located at `export_model.py`. Due to internals of PyTorch, one has to specify the resolution and the number of frames used during inference. This could potentially be avoided with some code changes. The script also exports predictions on sample inputs, so that the C++ wrapper can check if the export was correct. It also generates `out_dir/depth.png` and `out_dir/confidence.png`, which can be inspected to ensure correctness. There are multiple optimization options for the jit'ed model and presumably new PyTorch versions will add more. One should experiment on their system, which option gives the best performance.
+```
+mkdir -p cpp_exported_models
+python export_model.py --data_dir $cpp_exported_models --out_dir cpp_exported_models --model pretrained/ablation/abl04_fewer_depth_planes.ckpt --height 480 --width 640 --view_num 7 --jit_freeze --jit_run_frozen_optimizations
+```
+The exported model can be checked with a C++ executable built by the TANDEM code: `./tandem/build/libdr/dr_mvsnet/bin/dr_mvsnet_test cpp_exported_models/model.pt cpp_exported_models/sample_inputs.pt 10`. The last argument (here `10`) gives the number of repetitions used for benchmarking the performance. These numbers are more reliable than using `--profile` for `export_model.py` because it uses the same C++ code used for TANDEM.
+
 ### SLURM
 We include the `sbatch` scripts we used on our SLURM cluster, but these might have to be adapted for a different setup.
 

@@ -294,12 +294,20 @@ void DrMvsnetImpl::CallSequential() {
   auto model_output = module.forward(inputs).toTuple();
 
   constexpr int stage = 2;
+
+  // This is an ungly hack for backward compatibility.
+  // The initial model_output used to have 5 outputs: (depth, confidence, X, depth_dense, confidence_dense)
+  // When the code got published we removed the unused output (X above).
+  // Thus we access depth_dense and confidence_dense with num_elements-2, and num_elements-1 now
+  const auto num_elements = model_output->elements()[stage].toTuple()->elements().size();
+
+
   auto depth_tensor = model_output->elements()[stage].toTuple()->elements()[0].toTensor().to(torch::kCPU);
   auto confidence_tensor = model_output->elements()[stage].toTuple()->elements()[1].toTensor().to(torch::kCPU);
   auto depth_a = depth_tensor.accessor<float, 3>();
   auto confidence_a = confidence_tensor.accessor<float, 3>();
-  auto depth_dense_tensor = model_output->elements()[stage].toTuple()->elements()[3].toTensor().to(torch::kCPU);
-  auto confidence_dense_tensor = model_output->elements()[stage].toTuple()->elements()[4].toTensor().to(torch::kCPU);
+  auto depth_dense_tensor = model_output->elements()[stage].toTuple()->elements()[num_elements-2].toTensor().to(torch::kCPU);
+  auto confidence_dense_tensor = model_output->elements()[stage].toTuple()->elements()[num_elements-1].toTensor().to(torch::kCPU);
   auto depth_dense_a = depth_dense_tensor.accessor<float, 3>();
   auto confidence_dense_a = confidence_dense_tensor.accessor<float, 3>();
 

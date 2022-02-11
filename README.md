@@ -34,7 +34,7 @@
 - [x] 📣 C++ code released before Christmas! Please check [tandem/](tandem/).
 - [x] 📣 CVA-MVSNet released! Please check [cva_mvsnet/](cva_mvsnet/).
 - [x] 📣 Replica training data released! Please check [replica/](replica/).
-- [ ] Minor improvements throughout January. **Contributions are highly welcomed!**
+- [x] Minor improvements throughout January. **Contributions are highly welcomed!**
 - [ ] Docker image for TANDEM. **Contributions are highly welcomed!**
 
 ### Abstract
