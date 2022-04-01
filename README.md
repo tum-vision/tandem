@@ -35,6 +35,7 @@
 - [x] 📣 CVA-MVSNet released! Please check [cva_mvsnet/](cva_mvsnet/).
 - [x] 📣 Replica training data released! Please check [replica/](replica/).
 - [x] Minor improvements throughout January. **Contributions are highly welcomed!**
+- [x] Release of the ScanNet-trained model 
 - [ ] Docker image for TANDEM. **Contributions are highly welcomed!**
 
 ### Abstract
