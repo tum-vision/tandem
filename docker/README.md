@@ -42,3 +42,11 @@ You can also pull the built image from `dockerhub.io`:
 ```shell
 docker pull chengran222/tumtandem:origin
 ```
+
+## Build Tandem
+
+You need to switch user to build the `Tandem` in docker if you are using the terminator gui launched locally:
+
+```shell
+su - work
+```
