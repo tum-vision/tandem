@@ -1,0 +1,17 @@
+pytorch-lightning==0.7.6
+numpy
+pillow
+tensorboardX
+opencv-python
+plyfile
+yacs
+pytest
+nvidia-ml-py3
+psutil
+hurry.filesize
+pyyaml
+matplotlib
+tqdm
+hurry.filesize
+wget
+scipy
