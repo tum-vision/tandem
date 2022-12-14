@@ -11,7 +11,7 @@ gid=`id -g`
 # --build-arg http_proxy=http://10.141.6.84:7890 \
 # --build-arg https_proxy=http://10.141.6.84:7890 \
 
-# build docker images
+build docker images
 docker build -t chengran222/tumtandem \
     --build-arg USER=${user} \
     --build-arg UID=${uid} \
