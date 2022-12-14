@@ -13,6 +13,7 @@ xhost +local:root
 
 # run docker
 docker run \
+  --name tandem \
   --ipc=host \
   --gpus all \
   --privileged \
