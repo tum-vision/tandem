@@ -11,7 +11,3 @@ RUN . ../../etc/profile && \  # source the file with env variables
     -DCUDNN_LIBRARY=$TANDEM_CUDNN_LIBRARY \
     -DCUDNN_INCLUDE_PATH=$TANDEM_CUDNN_INCLUDE_PATH && \
     make -j12
-
-EXPOSE 22
- 
-ENTRYPOINT ["/entrypoint.bash", "gnome-terminal"]
