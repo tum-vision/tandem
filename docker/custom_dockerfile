@@ -1,7 +1,7 @@
 FROM chengran222/tumtandem
 
 # TANDEM
-RUN . ../../etc/profile && \  # source the file with env variables
+RUN . ../../etc/profile && \
     git clone https://github.com/tum-vision/tandem.git && \
     cd tandem/tandem && \
     mkdir build && cd build && \
