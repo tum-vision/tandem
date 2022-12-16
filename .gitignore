@@ -1,0 +1,9 @@
+# ignore torch models
+*.pt
+*.pth
+
+# ignore videos
+*.mp4
+*.MP4
+*.MOV
+*.avi

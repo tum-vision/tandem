@@ -11,10 +11,9 @@ gid=`id -g`
 # --build-arg http_proxy=http://10.141.6.84:7890 \
 # --build-arg https_proxy=http://10.141.6.84:7890 \
 
-build docker images
-docker build -t chengran222/tumtandem \
+# build docker images
+docker build -t pytholic/tumtandem -f dockerfile . \
     --build-arg USER=${user} \
     --build-arg UID=${uid} \
     --build-arg GROUP=${group} \
     --build-arg GID=${gid} \
-    ${file_dir}
