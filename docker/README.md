@@ -68,19 +68,22 @@ build/bin/tandem_dataset \
 ```
 
 ### Bash script
-Alternatively, you can use `utils/run.sh` script.
+Alternatively, you can use bash scripts insice `/utils.
 
-Put your `input` video and `calib.txt` in the same folder as `run.sh`. The nrun the following command in the terminal.
+Put your `input` video and `calib.txt` in the same folder as `run_video.sh`. Then run the following command in the terminal.
 
 Set executable permission on the script.
 ```shell
-chmod +x run.sh
+chmod +x run_video.sh
 ```
 
 ```shell
-./run.sh --input <input video name> --data <camera or data model>  
+./run_video.sh --input <input video path> 
+```
 
-# "data" can be one of [evo, gopro, iphone, euroc, replica].
+If your input are `images`, then use `run_image.sh`
+```shell
+./run_video.sh --input <path to images folder> 
 ```
 
 
