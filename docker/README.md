@@ -40,7 +40,7 @@ ssh -p 3751 work@xx.xx.xx.xx
 You can also pull the built image from `dockerhub.io`:
 
 ```shell
-docker pull chengran222/tumtandem:origin
+docker pull pytholic/tumtandem:tumtandem
 ```
 
 ## Build Tandem
