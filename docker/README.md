@@ -23,6 +23,7 @@ Please note that you can customize your own `ssh port` by modifying the `run-doc
 
 ```shell
 docker run --rm \
+  --name tandem \
   --ipc=host \
   --gpus all \
   --privileged \
@@ -69,7 +70,7 @@ build/bin/tandem_dataset \
 ### Bash script
 Alternatively, you can use `utils/run.sh` script.
 
-Put your video and `calib.txt` in the same folder as `run.sh`. The nrun the following command in the terminal.
+Put your `input` video and `calib.txt` in the same folder as `run.sh`. The nrun the following command in the terminal.
 
 Set executable permission on the script.
 ```shell
@@ -77,10 +78,24 @@ chmod +x run.sh
 ```
 
 ```shell
-./run.sh --input <input video name> --data <camera or data model> --container <your container name>
+./run.sh --input <input video name> --data <camera or data model>  
+
+# "data" can be one of [evo, gopro, iphone, euroc, replica].
 ```
 
-`data` can be one of [evo, gopro, iphone, euroc, replica]. You can find you container name by typing `docker ps -a` in the terminal.
 
 ## Note
-Current `cva-mvsnet` model supports `640x480` input size. If you want to input different size, follow instructions [here](https://github.com/pytholic/tandem/tree/master/cva_mvsnet) to export the model with desired dimensions. Update the path while running tandem accordingly.
+Incase you get some `X11` related error, rememebr that you need to set display inside your container same as your host display.
+```shell
+# In the host shell
+echo $DISPLAY
+:1
+
+# In the container shell
+echo $DISPLAY
+:0
+
+export DISPLAY=:1
+```
+
+Currently `cva-mvsnet` model supports `640x480` input size. If you want to input different size, follow instructions [here](https://github.com/pytholic/tandem/tree/master/cva_mvsnet) to export the model with desired dimensions. Update the path while running tandem accordingly.
