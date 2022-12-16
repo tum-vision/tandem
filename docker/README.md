@@ -83,7 +83,7 @@ chmod +x run_video.sh
 
 If your input are `images`, then use `run_image.sh`
 ```shell
-./run_video.sh --input <path to images folder> 
+./run_image.sh --input <path to images folder> 
 ```
 
 
