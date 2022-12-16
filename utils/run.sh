@@ -2,6 +2,7 @@
 
 input=$2
 data=$4
+container=$6
 
 # Create directories
 rm -rf frames
@@ -18,8 +19,8 @@ else
 fi
 
 # Copy files
-docker cp ./frames/. tandem:/home/work/tandem/tandem/data  # copy frames
-docker cp calib.txt tandem:/home/work/tandem/tandem/  # copy cam calib file
+docker cp ./frames/. $container:/home/work/tandem/tandem/data  # copy frames
+docker cp calib.txt $container:/home/work/tandem/tandem/  # copy cam calib file
 rm -rf frames
 
 docker exec -i tandem /bin/bash -c "cd tandem/tandem; build/bin/tandem_dataset preset=gui result_folder=results files=data calib=calib.txt mvsnet_folder=exported/tandem mode=1"

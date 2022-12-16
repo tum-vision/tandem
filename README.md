@@ -31,7 +31,7 @@
 </p>
 
 ## Overview
-This repository is mostly based on [this](https://github.com/rancheng/tandem) repository by rancheng. Main changes include adding a `custom_dockerfile` to complete the existing `image` and adding support for automatically cloning and building [tandem](https://github.com/tum-vision/tandem) repository.
+This repository is mostly based on [this](https://github.com/rancheng/tandem) repository by rancheng and official [TANDEM](https://github.com/tum-vision/tandem) repository.. Main changes include adding a `custom_dockerfile` to complete the existing `image` and adding support for automatically cloning and building [tandem](https://github.com/tum-vision/tandem) repository.
 
 ## Code and Data
 - [x] 📣 C++ code released before Christmas! Please check [tandem/](tandem/).
