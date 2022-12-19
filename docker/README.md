@@ -90,7 +90,7 @@ If your input are `images`, then use `run_image.sh`
 ## Note
 
 ### Display
-Incase you get some `X11` related error, rememebr that you need to set display inside your container same as your host display.
+In case you get some `X11` related error, rememebr that you need to set display inside your container same as your host display.
 ```shell
 # In the host shell
 echo $DISPLAY
@@ -102,6 +102,16 @@ echo $DISPLAY
 
 export DISPLAY=:1
 ```
+
+If `docker start` is not working, run with `-ai` flag.
+```shell
+docker start -ai tandem
+```
+Run the following if the error is related to `X11` error.
+```shell
+xhost + local:
+```
+Ref -> https://stackoverflow.com/questions/73490184/sudo-nautilus-gives-authorization-required-but-no-authorization-protocol-specif
 
 ### Input size
 Currently `cva-mvsnet` model supports `640x480` input size. If you want to input different size, follow instructions [here](https://github.com/pytholic/tandem/tree/master/cva_mvsnet) to export the model with desired dimensions. Update the path while running tandem accordingly.
