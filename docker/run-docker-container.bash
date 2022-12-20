@@ -21,7 +21,7 @@ docker run \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
   -v $HOME/work:/home/work/projects \
-  -v /mnt/Data/Datasets/dm-vio:/mnt/Data/Datasets/dm-vio \
+  -v /home/work/tandem:/mnt/tandem \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \

@@ -11,4 +11,4 @@ docker cp calib.txt tandem:/home/work/tandem/tandem/  # copy cam calib file
 
 #rm -rf $input
 
-docker exec -i tandem /bin/bash -c "cd tandem/tandem; build/bin/tandem_dataset preset=gui result_folder=results files=data calib=calib.txt mvsnet_folder=exported/tandem mode=1"
+docker exec -i tandem /bin/bash -c "cd tandem/tandem; build/bin/tandem_dataset preset=gui result_folder=results files=data calib=calib.txt mvsnet_folder=exported/tandem mode=1 tracking=sparse"
