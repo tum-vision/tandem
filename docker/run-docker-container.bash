@@ -21,8 +21,8 @@ docker run \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
   -v $HOME/.Xauthority:$docker/.Xauthority \
   -v $HOME/work:/home/work/projects \
-  -v /home/work/tandem:/mnt/tandem \
+  -v /mnt/Data/Datasets/dm-vio:/mnt/Data/Datasets/dm-vio \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it pytholic/tumtandem
+  -it pytholic/tandem

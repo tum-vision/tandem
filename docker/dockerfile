@@ -1,6 +1,6 @@
 FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04
 
-LABEL maintainer='ran.cheng2@mail.mcgill.ca'
+LABEL maintainer='rajahaseeb147@gmail.com'
 
 # Arguments
 ARG USER=initial
@@ -137,7 +137,7 @@ RUN sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh
 
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
-RUN echo 'export DISPLAY=:0' >> /etc/profile
+RUN echo 'export DISPLAY=:1' >> /etc/profile
 
 ENV NOTVISIBLE "in users profile"
 
