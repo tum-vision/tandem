@@ -25,4 +25,4 @@ docker run \
   -e XAUTHORITY=$home_folder/.Xauthority \
   -e DISPLAY=$DISPLAY \
   -e QT_X11_NO_MITSHM=1 \
-  -it pytholic/tumtandem
+  -it pytholic/tandem

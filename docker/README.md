@@ -90,7 +90,7 @@ If your input are `images`, then use `run_image.sh`
 ## Note
 
 ### Display
-Incase you get some `X11` related error, rememebr that you need to set display inside your container same as your host display.
+In case you get some `X11` related error, rememebr that you need to set display inside your container same as your host display.
 ```shell
 # In the host shell
 echo $DISPLAY
