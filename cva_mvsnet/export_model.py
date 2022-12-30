@@ -128,6 +128,7 @@ def main(args: argparse.Namespace):
     selection_index = [inverse_view_index[i] for i in view_index]
 
     model = tandem.cva_mvsnet
+    
     del tandem
 
     for s in model.stages:
@@ -193,7 +194,7 @@ def main(args: argparse.Namespace):
         traced_script_module = torch.jit.trace(model, example_inputs=example_inputs, check_trace=True,)
         if args.jit_freeze:
             print("--- jit_freeze")
-            traced_script_module = torch.jit.freeze(traced_script_module)
+            traced_script_module = torch.jit.freeze(traced_script_module.eval())
             assert len(list(traced_script_module.named_parameters())) == 0
 
         if args.jit_run_frozen_optimizations:

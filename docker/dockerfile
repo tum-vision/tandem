@@ -1,0 +1,227 @@
+FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04
+
+LABEL maintainer='rajahaseeb147@gmail.com'
+
+# Arguments
+ARG USER=initial
+ARG GROUP=initial
+ARG UID=1000
+ARG GID=${UID}
+ARG SHELL=/bin/bash
+
+# cuda apt source
+# RUN apt-key del 7fa2af80
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub
+
+# Install packages
+RUN apt-get update && apt install -y --no-install-recommends software-properties-common
+
+RUN apt-get update && add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    wget curl ssh \
+    zsh terminator gnome-terminal git vim tig \
+    dbus-x11 libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
+    unzip \
+    yasm \
+    pkg-config \
+    libjpeg-dev \
+    libtiff-dev \
+    libjasper-dev \
+    libpng-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libv4l-dev \
+    libatlas-base-dev \
+    gfortran \
+    libtbb2 \
+    libtbb-dev \
+    libpq-dev \
+    libeigen3-dev \
+    libpython-dev \
+    libopencv-dev \
+    gdb \
+    rsync \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /root/
+
+WORKDIR /root/
+
+
+# install cmake
+RUN apt install -y software-properties-common lsb-release && \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
+    apt-add-repository "deb https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" && \
+     apt update &&  apt install -y --no-install-recommends cmake
+
+RUN apt update && apt install -y --no-install-recommends build-essential libboost-all-dev
+
+# # build eigen
+# RUN wget https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz && \
+#     tar -xvzf eigen-3.3.7.tar.gz && cd eigen-3.3.7 && mkdir build && cd build && cmake .. && make install && \
+#     cd ../../ && rm -rf eigen-3.3.7 && rm eigen-3.3.7.tar.gz
+
+RUN apt update && apt install -y --no-install-recommends libglew-dev \
+    pkg-config \
+    libgtk-3-dev \
+    libgtest-dev \
+    libgoogle-glog-dev \
+    google-mock \
+    libgflags-dev \
+    libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
+    libxvidcore-dev libx264-dev \
+    libatlas-base-dev \
+    libsuitesparse-dev \
+    qtdeclarative5-dev \
+    qt5-qmake \
+    pkg-config libgtk-3-dev \
+    libqglviewer-dev-qt5
+
+
+# RUN git clone https://github.com/opencv/opencv.git && git clone https://github.com/opencv/opencv_contrib.git
+# RUN cd /root/opencv && git checkout 3.4.5 && cd ../opencv_contrib && git checkout 3.4.5 && \
+#     cd /root/opencv && mkdir build && cd build && \
+#     cmake \
+# 	  -DBUILD_TIFF=ON \
+# 	  -DBUILD_opencv_java=OFF \
+#       -DOPENCV_EXTRA_MODULES_PATH=/root/opencv_contrib/modules \
+# 	  -DWITH_CUDA=OFF \
+# 	  -DENABLE_AVX=ON \
+# 	  -DWITH_OPENGL=ON \
+# 	  -DWITH_OPENCL=ON \
+# 	  -DWITH_IPP=ON \
+# 	  -DWITH_TBB=ON \
+# 	  -DWITH_EIGEN=ON \
+# 	  -DWITH_V4L=ON \
+# 	  -DBUILD_TESTS=OFF \
+# 	  -DBUILD_PERF_TESTS=OFF \
+# 	  -DCMAKE_BUILD_TYPE=RELEASE \
+# 	  -DBUILD_opencv_python3=ON \
+# 	  -DCMAKE_INSTALL_PREFIX=$(python3.6 -c "import sys; print(sys.prefix)") \
+# 	  -DPYTHON_EXECUTABLE=$(which python3.6) \
+# 	  -DPYTHON_INCLUDE_DIR=$(python3.6 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+# 	  -DPYTHON_PACKAGES_PATH=$(python3.6 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") .. \
+#     && make install \
+#     && cd /root/ && rm -rf opencv && rm -rf opencv_contrib
+
+RUN apt update && apt install -y --no-install-recommends \
+    freeglut3-dev pkg-config \
+    libxmu-dev libxi-dev \
+    libflann-dev
+
+# Pangolin
+RUN cd /root/ && git clone https://github.com/stevenlovegrove/Pangolin.git && \
+    cd /root/Pangolin/ && \
+    git checkout v0.6 && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make -j12 install
+
+
+# install yaml cpp
+RUN apt install -y --no-install-recommends libyaml-cpp-dev python3-pip python3-setuptools python3-venv python3-wheel
+
+RUN apt install -y --no-install-recommends libxtst6
+
+# Env vars for the nvidia-container-runtime.
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
+
+# change passwd
+RUN echo 'root:work123' | chpasswd
+
+# modify the sshd_config
+RUN sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+RUN echo 'export DISPLAY=:1' >> /etc/profile
+
+ENV NOTVISIBLE "in users profile"
+
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+RUN groupadd --gid 1000 work && \
+    useradd --gid 1000 --uid 1000 -ms /bin/bash work
+
+RUN echo 'work:work123' | chpasswd
+
+# copy entrypoint
+COPY entrypoint.bash /entrypoint.bash
+RUN chmod 777 /entrypoint.bash
+
+RUN mkdir -p /home/work/.config/terminator
+RUN mkdir -p /root/.config/terminator
+COPY config/terminator/config /root/.config/terminator
+COPY config/terminator/config /home/work/.config/terminator
+RUN chown -R work:work /home/work/.config
+RUN chown -R root:root /root/.config
+
+USER work
+
+WORKDIR /home/work/
+
+# Conda
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
+
+ENV PATH="/home/work/miniconda3/bin:${PATH}"
+
+RUN conda install -y python=3.7
+
+RUN wget https://download.pytorch.org/libtorch/cu111/libtorch-cxx11-abi-shared-with-deps-1.9.0%2Bcu111.zip
+
+RUN pip3 install wheel tqdm ruamel.yaml pyquaternion matplotlib tabulate
+
+RUN conda install -y pytorch==1.5.1 torchvision==0.6.1 cudatoolkit=10.2 -c pytorch
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+RUN unzip libtorch-cxx11-abi-shared-with-deps-1.9.0+cu111.zip
+
+USER root
+
+RUN echo 'export PATH=/home/work/miniconda3/bin:${PATH}' >> /etc/profile
+
+# RUN echo 'export TANDEM_CUDNN_LIBRARY=/usr/local/cuda-11.1/lib64:/usr/lib/x86_64-linux-gnu' >> /etc/profile
+
+# RUN echo 'export TANDEM_CUDNN_INCLUDE_PATH=/local/cuda-11.1/include:/usr/include' >> /etc/profile
+
+RUN echo 'export TANDEM_CUDNN_LIBRARY=/usr/lib/x86_64-linux-gnu' >> /etc/profile
+
+RUN echo 'export TANDEM_CUDNN_INCLUDE_PATH=/usr/include' >> /etc/profile
+
+RUN echo 'export TANDEM_LIBTORCH_DIR=/home/work/libtorch' >> /etc/profile
+
+USER root
+
+# CNPY
+RUN git clone https://github.com/rogersce/cnpy.git && \
+    cd cnpy && \
+    mkdir build && cd build && cmake .. && make install
+
+# Sophus
+RUN git clone https://github.com/strasdat/Sophus.git && cd Sophus && \
+    git checkout v1.0.0 && mkdir build && cd build && cmake .. && make install
+
+# TANDEM
+RUN . ../../etc/profile && \
+    git clone https://github.com/tum-vision/tandem.git && \
+    cd tandem/tandem && \
+    mkdir build && cd build && \
+    cmake .. \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH=$TANDEM_LIBTORCH_DIR \
+    -DCUDNN_LIBRARY=$TANDEM_CUDNN_LIBRARY \
+    -DCUDNN_INCLUDE_PATH=$TANDEM_CUDNN_INCLUDE_PATH && \
+    make -j12
+    
+EXPOSE 22
+
+ENTRYPOINT ["/entrypoint.bash", "terminator"]
